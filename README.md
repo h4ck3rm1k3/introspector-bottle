@@ -11,6 +11,19 @@ you need a way to collect and organize and parse this data.
 
 ## project management
 Be able to bootstrap projects from source based on git. Be able to compile everything from source or use system libs. 
+
+All used files will be 'mounted' like in go into your workspace.  
+
+Support for :
+* system libs
+* debian packags
+* github repos
+* maintaining forks of github repos
+* other version control systems
+* tar.gz management
+* extracting patches from urls/mailing lists etc. 
+* editing files in emacs and maintaining local patches. 
+
 ## smart compilation 
 The ultimate goal is to enable smart compilation without huge dependancy nightmares. We want to isolate the exact deps for a given bit of code in the following contexts: 
 
@@ -23,6 +36,10 @@ The ultimate goal is to enable smart compilation without huge dependancy nightma
 * execute : what is needed to get it to execute (maybe crash)
 * coverage : what do we need to do to execute all the code paths
 * validate: what is needed to get it to execute validily
+* splitting up sources into logical units. we dont need huge files we want small micro units that we can compile and link and load on the fly into a running program.
+* dynamic creation of shared objects with code changes or single functions
+* wrapping existing shared objects and overloading, intercepting functions
+* wrapping object files and compile/link time object interception
 
 Many of these things are hidden in autotools and compiler magic, we need to be able to dive into that at any point.
 
