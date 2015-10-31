@@ -15,6 +15,12 @@ you need a way to collect and organize and parse this data.
 
 Did you ever wonder why we have these huge isolated monolithic free software applications ? Why is it that everyone has an island of code. As a recipient of free software, an empowered user, developer, we need to be able to break down the barriers between modules and see the old main routines as suggestions and documentation of tested use cases. We need the freedom to be able to come up with new paths of execution that meet our needs. We need to be able to patch this code, yet keep any changes in sync with other users. Any patches will be managed in the introspector system and be able to traced back to the pristine sources.
 
+## Refreshing the *NIX philosophy in 2015
+
+Everything is a file. Sure, it is a file. But does it need to be a cruddy ascii file ? what if everything was application/rss+xml rdf owl file or application/json json file? How can we get there?
+
+First of all we need to look at how data gets serialized. My theory to be proven is that we can intercept, examine and rework the print functions in a program, capturing the context and stack of the execution at run time and transform this into a structured data call. We should be able crack open most parsers and serializers to rework them to accept and emit structured data. Given a transformation routine and communication routine we can create interfaces between objects that do not have to be slow. Given enough data and time we can optimize this process.
+
 ## project management
 Be able to bootstrap projects from source based on git. Be able to compile everything from source or use system libs. 
 
