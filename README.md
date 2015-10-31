@@ -9,6 +9,10 @@ Yes, this will be a web based, single user, IDE for capturing rich output from c
 If you do any code analysis or process analysis you will use multiple tools and soon will have huge amounts of data.
 you need a way to collect and organize and parse this data.
 
+## End of monolithic applications
+
+Did you ever wonder why we have these huge isolated monolithic free software applications ? Why is it that everyone has an island of code. As a usr, we need to be able to break down the barriers between modules and see the old main routines as suggestions and documentation of tested use cases. We need the freedom to be able to come up with new paths of execution that meet our needs.
+
 ## project management
 Be able to bootstrap projects from source based on git. Be able to compile everything from source or use system libs. 
 
@@ -40,6 +44,7 @@ The ultimate goal is to enable smart compilation without huge dependancy nightma
 * dynamic creation of shared objects with code changes or single functions
 * wrapping existing shared objects and overloading, intercepting functions
 * wrapping object files and compile/link time object interception
+
 
 Many of these things are hidden in autotools and compiler magic, we need to be able to dive into that at any point.
 
