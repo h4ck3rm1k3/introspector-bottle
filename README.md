@@ -3,7 +3,7 @@ The introspector project interface: a python based webserver to manage your prog
 
 # what? another ide?
 
-Yes, this will be a web based, single user, IDE for capturing rich output from commands. 
+Yes, this will be a web based, single user, IDE for capturing rich output from commands. It will act as an integration engine for process management of your development process. The library of code will also be usable in batch mode, but the real benefit is for the interactive user interactive mode. We will provide json/rest apis and a javascript front end for customizing the user front end interaction in any way you like.
 
 ## collecting of  output files
 If you do any code analysis or process analysis you will use multiple tools and soon will have huge amounts of data.
