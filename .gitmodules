@@ -1,3 +1,7 @@
 [submodule "workspace/py/path.py"]
 	path = workspace/py/path.py
 	url = git@github.com:h4ck3rm1k3/path.py.git
+[submodule "js/requirejs"]
+	url = git@github.com:jrburke/requirejs.git
+	path = static/js/requirejs
+	branch = refs/heads/master
