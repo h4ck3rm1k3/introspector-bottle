@@ -124,7 +124,7 @@ def requirements() :
 
 
     git_submodule(name='js/requirejs',
-                  path='workspace/js/requirejs',
+                  path='static/js/requirejs',
                   url='git@github.com:jrburke/requirejs.git',
                   branch="master")
     #git_submodule('py/pygit2','git@github.com:libgit2/pygit2.git')
