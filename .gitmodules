@@ -1,27 +1,3 @@
 [submodule "workspace/py/path.py"]
 	path = workspace/py/path.py
 	url = git@github.com:h4ck3rm1k3/path.py.git
-[submodule "js/requirejs"]
-	url = git@github.com:jrburke/requirejs.git
-	path = static/js/requirejs
-	branch = refs/heads/master
-[submodule "js/jquery"]
-	url = git@github.com:jquery/jquery.git
-	path = static/js/jquery
-	branch = refs/heads/master
-[submodule "js/angularjs"]
-	url = git@github.com:angular/angular.js.git
-	path = static/js/angularjs
-	branch = refs/heads/master
-[submodule "js/d3"]
-	url = git@github.com:mbostock/d3.git
-	path = static/js/d3
-	branch = refs/heads/master
-[submodule "js/angular-ui-tree"]
-	url = git@github.com:angular-ui-tree/angular-ui-tree.git
-	path = static/js/angular-ui-tree
-	branch = refs/heads/master
-[submodule "js/angular-ui-grid"]
-	url = git@github.com:angular-ui/ui-grid.git
-	path = static/js/angular-ui-grid
-	branch = refs/heads/master
