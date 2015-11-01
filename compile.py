@@ -7,9 +7,47 @@ import subprocess
 import os
 #from urlparse import urlparse
 
+from bottle import static_file
+
+@route('/static/:path#.+#', name='static')
+def static(path):
+    return static_file(path, root='static')
+
 sys.path.append('workspace/py/path.py')
 from path import Path
 
+def do_command(args, path ):
+    d = Path('workspace')
+    if path :
+        d = d /  path
+    print ("going into {0}".format(d))
+    if (not d.exists()):
+        raise Exception(d3)
+    
+    p = subprocess.Popen(args,
+                         shell=True, 
+                         #stdin=subprocess.PIPE,
+                         stdout=subprocess.PIPE,
+                         stderr=subprocess.PIPE,
+                         cwd=d)
+    stdout = p.stdout
+    stderr = p.stderr
+    stdout_o = stdout.read().decode("utf-8").split("\n") #.read()
+    stderr_o = stderr.read().decode("utf-8").split("\n")
+    retcode = p.wait();
+    data = json.dumps({
+        'path' : d,
+        'stdout': stdout_o,
+        'stderr': stderr_o,
+        'cmd' : args,
+        'retcode' : retcode,
+    })        
+        
+    print (data)
+    if not retcode == 0:
+        raise Exception("bad return")
+    return data
+    
 # cmd is array of args
 @route('/run/<cwd>/<cmd>')
 def run_command(cmd, cwd):
@@ -22,31 +60,16 @@ def run_command(cmd, cwd):
         if key == 'args':
             args.append(value)
         
-    
-    if path :
-        d3 = d / cwd / path
-    else:
-        d3 = d / cwd 
-
-    if (d3.exists()):
-        p = subprocess.Popen(cmd, shell=True, 
-              #stdin=subprocess.PIPE,
-              stdout=subprocess.PIPE,
-              stderr=subprocess.PIPE,
-                  cwd=d3)
-        stdout = p.stdout
-        stderr = p.stderr
-        stdout_o = stdout.read().split("\n")
-        stderr_o = stderr.read().split("\n")
-        data = json.dumps({
-            'cwd' : d3,
-            'stdout': stdout_o,
-            'stderr': stderr_o,
-            'cmd' : cmd,
-            'qpairs' : qpairs,
-        })
+        data = do_command(args, cwd, path )
         
-        return '<head><script src="/default.js"></script><script>display({data});</script></head><body></body>'.format( data=data)
+        
+        return """<head>
+        <script src="/static/js/requirejs/require.js"></script>
+        <script src="/default.js"></script>
+        <script>display({data});</script>
+        </head>
+        <body>
+        </body>""".format( data=data)
     else:
         return template('<b>dir does not exists {{d3}}</b>!', d3=d3)
 
@@ -73,6 +96,9 @@ def git_submodule(name, path, url, branch):
     
     #s = self.repo.lookup_submodule(SUBM_PATH)
     #self.repo.listall_submodules()
+
+    return str(Path(path).abspath())
+
 # one time setup to install all prerequisites
 
 
@@ -85,17 +111,25 @@ def git_submodule(name, path, url, branch):
 #     remote_host = parsed.netloc
 # else:
 #     remote_host = parsed.scheme
+def grunt (p):
+    print ("running grunt in", p)
+    do_command('npm install',p)
+    do_command('npm install grunt',p)
+    do_command('grunt',p)
     
 def git_my_submodule_python(source_dir=None, mount=None, original=None, my_repo=None):
 
-    if mount:
-        if source_dir:
-            p = do_mount(source_dir, mount)
-        else:
-            p = workspace_dir(mount)
+    if not mount:
+        raise Exception("no mount")
     
-        if p not in sys.path:
-            sys.path.append(p) 
+    if source_dir:
+        p = do_mount(source_dir, mount)
+    else:
+        p = workspace_dir(mount)
+        
+    if p not in sys.path:
+        sys.path.append(p)
+    return p
     # update submodules for that module
     
 
@@ -127,9 +161,32 @@ def requirements() :
                   path='static/js/requirejs',
                   url='git@github.com:jrburke/requirejs.git',
                   branch="master")
-    #git_submodule('py/pygit2','git@github.com:libgit2/pygit2.git')
 
-#def load_script(url) :
+    grunt(git_submodule(name='js/jquery',
+                  path='static/js/jquery',
+                  url='git@github.com:jquery/jquery.git',
+                  branch="master"))
+
+    git_submodule(name='js/angularjs',
+                  path='static/js/angularjs',
+                  url='git@github.com:angular/angular.js.git',
+                  branch="master")    
+
+    git_submodule(name='js/d3',
+                  path='static/js/d3',
+                  url='git@github.com:mbostock/d3.git',
+                  branch="master")    
+
+    git_submodule(name='js/angular-ui-tree',
+                  path='static/js/angular-ui-tree',
+                  url='git@github.com:angular-ui-tree/angular-ui-tree.git',
+                  branch="master")    
+
+    git_submodule(name='js/angular-ui-grid',
+                  path='static/js/angular-ui-grid',
+                  url='git@github.com:angular-ui/ui-grid.git',
+                  branch="master")
+
     
     
 @route('/default.js')
