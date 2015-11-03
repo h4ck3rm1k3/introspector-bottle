@@ -91,10 +91,13 @@ def run_command(cmd, cwd):
         <script src="/static/js/angular-ui-tree/dist/angular-ui-tree.js"></script>
         <script src="/static/js/angular-ui-grid/ui-grid.js"></script>
         <script src="/static/js/d3/d3.js"></script>
+        <link rel="stylesheet" href="/static/js/angular-json-edit/dist/styles/jsonEditor.css">
         <!-- endbower -->
-        <script src="/default.js"></script>
-        <script>display({data});</script>
+        <script src="/static/js/introspector/default.js"></script>
 
+
+        <!-- warning large data object injected here! -->
+        <div id=raw-data-object class=raw-data data-ng-init='raw_data_object={data}'></div>
 
 <!-- Add your site or application content here -->
     <div class="header">
@@ -148,6 +151,7 @@ def run_command(cmd, cwd):
     <script src="/static/js/introspector/controllers/table.js"></script>
     <script src="/static/js/introspector/controllers/graph.js"></script>
     <script src="/static/js/introspector/controllers/source.js"></script>
+    <script src="/static/js/angular-json-edit/dist/angularJsonEdit.js"></script>
 
         </body>
         </html>""".format( data=data)
@@ -267,17 +271,7 @@ def requirements() :
     #               path='static/js/angular-ui-grid',
     #               url='git@github.com:angular-ui/ui-grid.git',
     #               branch="master")
-
     
-    
-@route('/default.js')
-def default_js():
-    return """
-    function display(x) {
-    
-    }
-"""
-     
 @route('/hello/<name>')
 def index(name):
     return template('<b>Hello {{name}}</b>!', name=name)

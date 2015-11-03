@@ -13,6 +13,29 @@ angular.module('introspectorApp')
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
-      'Karma'
+        'Karma',
+        'angular-json-edit'
     ];
   });
+  
+angular.module('introspectorApp')
+  .controller('SourceCtrlEditor', function () {
+      var vm = this;
+      vm.config = {
+          name: 'JSON-editor',
+          keywords: [
+              'angular',
+              'json',
+              'editor'
+          ],
+          usage: {
+              angular: {
+                  directive: true
+              }
+          }
+      };
+      console.log(vm.config);
+    
+
+  });
+

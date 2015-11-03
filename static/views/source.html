@@ -1,1 +1,10 @@
 <p>View as a source.</p>
+<div ng-controller="SourceCtrlEditor as source_editor">
+  <json-editor id="json_editor" config="example.config" show-modal="true"
+               class="component">
+
+  </json-editor>
+
+  <p>Raw Data: {{raw_data_object}} </p>
+</div>
+

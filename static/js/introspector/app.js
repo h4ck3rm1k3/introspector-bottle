@@ -17,7 +17,9 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'angular-json-edit',
+//    'loadDataModule' // my data loader
   ])
   .config(function ($routeProvider) {
     $routeProvider
