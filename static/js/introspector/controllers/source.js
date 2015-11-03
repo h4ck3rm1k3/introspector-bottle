@@ -19,23 +19,14 @@ angular.module('introspectorApp')
   });
   
 angular.module('introspectorApp')
-  .controller('SourceCtrlEditor', function () {
-      var vm = this;
-      vm.config = {
-          name: 'JSON-editor',
-          keywords: [
-              'angular',
-              'json',
-              'editor'
-          ],
-          usage: {
-              angular: {
-                  directive: true
-              }
-          }
-      };
-      console.log(vm.config);
-    
-
-  });
+    .controller('SourceCtrlEditor',
+                ['$scope',
+                 function ($scope) {
+                     var vm = this;
+                     var data = $scope.$eval('raw_data_object');
+                     vm.config = data;
+                     console.log(vm.config);
+                 }
+                ]
+               );
 
