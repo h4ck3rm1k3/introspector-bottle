@@ -1,0 +1,18 @@
+{
+  "name": "introspector",
+  "private": true,
+  "devDependencies": {
+    "rimraf": "^2.4.0",
+    "run-sequence": "^1.1.1",
+    "wiredep": "^2.2.2",
+    "lazypipe": "^0.2.4",
+    "open": "0.0.5",
+    "jshint-stylish": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "dependencies": {
+    "wiredep": "^2.2.2"
+  }
+}

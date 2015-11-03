@@ -54,22 +54,103 @@ def run_command(cmd, cwd):
     d = Path('workspace')
     args = [cmd]
     path = bottle.request.params.get('path')
-
+    if path :
+        cwd = cwd /  path
     qpairs= bottle._parse_qsl(bottle.request.query_string)
     for key, value in qpairs :
         if key == 'args':
             args.append(value)
         
-        data = do_command(args, cwd, path )
+        data = do_command(args, cwd )
         
         
-        return """<head>
-        <script src="/static/js/requirejs/require.js"></script>
+        return """<html>
+<head>
+  <!-- bower:css -->
+  <link rel="stylesheet" href="/static/js/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="/static/js/angular-ui-tree/dist/angular-ui-tree.min.css" />
+  <link rel="stylesheet" href="/static/js/angular-ui-grid/ui-grid.css" />
+  <link rel="stylesheet" href="/static/js/animate.css/animate.css" />
+  <link rel="stylesheet" href="/static/js/fontawesome/css/font-awesome.css" />
+  <!-- endbower -->
+        </head>
+        <body ng-app="introspectorApp">
+        <!-- bower:js -->
+        <script src="/static/js/jquery/dist/jquery.js"></script>
+        <script src="/static/js/angular/angular.js"></script>
+        <script src="/static/js/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="/static/js/angular-animate/angular-animate.js"></script>
+        <script src="/static/js/angular-aria/angular-aria.js"></script>
+        <script src="/static/js/angular-cookies/angular-cookies.js"></script>
+        <script src="/static/js/angular-messages/angular-messages.js"></script>
+        <script src="/static/js/angular-resource/angular-resource.js"></script>
+        <script src="/static/js/angular-route/angular-route.js"></script>
+        <script src="/static/js/angular-sanitize/angular-sanitize.js"></script>
+        <script src="/static/js/angular-touch/angular-touch.js"></script>
+        <script src="/static/js/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <script src="/static/js/angular-ui-tree/dist/angular-ui-tree.js"></script>
+        <script src="/static/js/angular-ui-grid/ui-grid.js"></script>
+        <script src="/static/js/d3/d3.js"></script>
+        <!-- endbower -->
         <script src="/default.js"></script>
         <script>display({data});</script>
-        </head>
-        <body>
-        </body>""".format( data=data)
+
+
+<!-- Add your site or application content here -->
+    <div class="header">
+      <div class="navbar navbar-default" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="#/">introspector</a>
+          </div>
+
+          <div class="collapse navbar-collapse" id="js-navbar-collapse">
+
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#/">Home</a></li>
+
+              <li><a ng-href="#/tree">Tree</a></li>
+              <li><a ng-href="#/graph">Graph</a></li>
+              <li><a ng-href="#/table">Table</a></li>
+              <li><a ng-href="#/source">Source</a></li>
+
+              <li><a ng-href="#/about">About</a></li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+    <div ng-view=""></div>
+    </div>
+
+    <div class="footer">
+      <div class="container">
+        <p>made by the Introspector Team</p>
+      </div>
+    </div>
+
+
+    <script src="/static/js/introspector/app.js"></script>
+    <script src="/static/js/introspector/controllers/main.js"></script>
+    <script src="/static/js/introspector/controllers/about.js"></script>
+    <script src="/static/js/introspector/controllers/tree.js"></script>
+    <script src="/static/js/introspector/controllers/table.js"></script>
+    <script src="/static/js/introspector/controllers/graph.js"></script>
+    <script src="/static/js/introspector/controllers/source.js"></script>
+
+        </body>
+        </html>""".format( data=data)
     else:
         return template('<b>dir does not exists {{d3}}</b>!', d3=d3)
 
@@ -157,35 +238,35 @@ def requirements() :
                      my_repo='git@github.com:h4ck3rm1k3/GitPython.git')
 
 
-    git_submodule(name='js/requirejs',
-                  path='static/js/requirejs',
-                  url='git@github.com:jrburke/requirejs.git',
-                  branch="master")
+    # git_submodule(name='js/requirejs',
+    #               path='static/js/requirejs',
+    #               url='git@github.com:jrburke/requirejs.git',
+    #               branch="master")
 
-    grunt(git_submodule(name='js/jquery',
-                  path='static/js/jquery',
-                  url='git@github.com:jquery/jquery.git',
-                  branch="master"))
+    # grunt(git_submodule(name='js/jquery',
+    #               path='static/js/jquery',
+    #               url='git@github.com:jquery/jquery.git',
+    #               branch="master"))
 
-    git_submodule(name='js/angularjs',
-                  path='static/js/angularjs',
-                  url='git@github.com:angular/angular.js.git',
-                  branch="master")    
+    # bower(git_submodule(name='js/angularjs',
+    #               path='static/js/angularjs',
+    #               url='git@github.com:angular/angular.js.git',
+    #               branch="master"))
 
-    git_submodule(name='js/d3',
-                  path='static/js/d3',
-                  url='git@github.com:mbostock/d3.git',
-                  branch="master")    
+    # git_submodule(name='js/d3',
+    #               path='static/js/d3',
+    #               url='git@github.com:mbostock/d3.git',
+    #               branch="master")    
 
-    git_submodule(name='js/angular-ui-tree',
-                  path='static/js/angular-ui-tree',
-                  url='git@github.com:angular-ui-tree/angular-ui-tree.git',
-                  branch="master")    
+    # git_submodule(name='js/angular-ui-tree',
+    #               path='static/js/angular-ui-tree',
+    #               url='git@github.com:angular-ui-tree/angular-ui-tree.git',
+    #               branch="master")    
 
-    git_submodule(name='js/angular-ui-grid',
-                  path='static/js/angular-ui-grid',
-                  url='git@github.com:angular-ui/ui-grid.git',
-                  branch="master")
+    # git_submodule(name='js/angular-ui-grid',
+    #               path='static/js/angular-ui-grid',
+    #               url='git@github.com:angular-ui/ui-grid.git',
+    #               branch="master")
 
     
     
