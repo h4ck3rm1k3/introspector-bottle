@@ -117,3 +117,9 @@ target/
 /v/local/bin
 /v/local/include
 /v/local/lib
+/static/js/introspector/controllers/#source.js#
+/static/js/introspector/controllers/.#source.js
+/static/scripts
+/static/views/#source.html#
+/static/views/.#source.html
+/static/views/scripts
