@@ -7,6 +7,20 @@ Yes, this will be a web based, single user, IDE for capturing rich output from c
 
 By single user, of course you might want to install this on multiple machines and share it with other users. You might consider it a developer's jenkins helper that will allow a developer to be productive. Eventually it could be used for also code deployments and execution.
 
+## structure of json
+
+The json emitted will be self describing, so you as the emitter are responsible
+for giving hints on how to interpret it. For tables of data, you provide column
+descriptions. For the entire graph of data, you provide the way to traverse
+it or what to traverse.
+
+### Style
+you can also provide optional style data that is used for rendering.
+
+### code
+We will support for user defined code for defining events to be used. Maybe we
+can support interpretation of the asts in the js client.
+
 ## collecting of  output files
 If you do any code analysis or process analysis you will use multiple tools and soon will have huge amounts of data.
 you need a way to collect and organize and parse this data.
