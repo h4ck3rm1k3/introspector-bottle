@@ -1,14 +1,11 @@
 <p>View as a source.</p>
-<div source>
-  <p>Raw Data: {{raw_data_object}} </p>
+
+<p>Editor:</p>
+<div class="row" ng-controller="AceCtrl">
+  <div class="col-md-12">
+    <div ui-ace='aceOption'
+         ng-model='aceModel'
+         style='height : 200px'
+         ></div>
+  </div>
 </div>
-<div ng-controller="SourceCtrlEditor as source_editor">
-  <json-editor id="json_editor" config="source_editor.config" show-modal="true"
-               class="component">
-
-  </json-editor>
-</div>
-
-
-
-

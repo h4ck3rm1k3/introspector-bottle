@@ -1,0 +1,15 @@
+.ui-grid-header-canvas {
+    height : 40px;
+}
+
+.ui-grid-header-cell {
+  height: 60px;
+}
+
+div.ui-grid-header.ng-scope {
+    height: 60px;
+}
+
+.ui-grid-contents-wrapper {
+    height: 60px;
+}

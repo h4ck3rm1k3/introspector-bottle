@@ -10,16 +10,18 @@
  */
 angular
   .module('introspectorApp', [
-    'ngAnimate',
-    'ngAria',
-    'ngCookies',
-    'ngMessages',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch',
-    'angular-json-edit',
-//    'loadDataModule' // my data loader
+      'ngAnimate',
+      'ngAria',
+      'ngCookies',
+      'ngMessages',
+      'ngResource',
+      'ngRoute',
+      'ngSanitize',
+      'ngTouch',
+      'angular-json-edit',
+      'ui.tree',
+      'ui.ace',
+      'ui.grid',      
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -41,19 +43,19 @@ angular
       .when('/graph', {
         templateUrl: '/static/views/graph.html',
         controller: 'GraphCtrl',
-        controllerAs: 'tree'
+        controllerAs: 'graph'
       })
 
       .when('/source', {
         templateUrl: '/static/views/source.html',
-        controller: 'SourceCtrl',
-        controllerAs: 'tree'
+        controller: 'AceCtrl',
+        controllerAs: 'source'
       })
 
       .when('/table', {
         templateUrl: '/static/views/table.html',
         controller: 'TableCtrl',
-        controllerAs: 'tree'
+        controllerAs: 'table'
       })
 
 .otherwise({

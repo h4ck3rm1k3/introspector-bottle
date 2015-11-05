@@ -73,3 +73,41 @@ Here are some of the tools we want to support :
 * swig
 * valgrind
 * gdb
+
+# Dimensions
+
+Token: we want to have a key that can reference all these dimensions at the
+same time and be able to go from one to the next in any direction.
+
+## Space
+* Space in memory
+* Physical Distance between parts
+* Network connections, routing,
+* Position in array
+* code label, segment
+* on what computer are we running
+
+## Value(Energy)
+Value of memory
+The execution context
+The instruction pointer
+The registers
+The stack
+The values in the memory of the computer
+
+Values on disk
+
+## Time
+The time
+
+## User Session
+The user session or user
+The process
+The thread
+
+## Ownership
+The ownership dimension
+* Property
+* Legal rights
+* Entitlements
+

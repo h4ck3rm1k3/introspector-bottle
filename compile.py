@@ -69,9 +69,15 @@ def run_command(cmd, cwd):
   <!-- bower:css -->
   <link rel="stylesheet" href="/static/js/bootstrap/dist/css/bootstrap.css" />
   <link rel="stylesheet" href="/static/js/angular-ui-tree/dist/angular-ui-tree.min.css" />
+
+  <!-- uigrid -->
   <link rel="stylesheet" href="/static/js/angular-ui-grid/ui-grid.css" />
+  
   <link rel="stylesheet" href="/static/js/animate.css/animate.css" />
   <link rel="stylesheet" href="/static/js/fontawesome/css/font-awesome.css" />
+
+  <link rel="stylesheet" href="/static/css/introspector.css" />
+ 
   <!-- endbower -->
         </head>
         <body ng-app="introspectorApp">
@@ -91,7 +97,16 @@ def run_command(cmd, cwd):
         <script src="/static/js/angular-ui-tree/dist/angular-ui-tree.js"></script>
         <script src="/static/js/angular-ui-grid/ui-grid.js"></script>
         <script src="/static/js/d3/d3.js"></script>
+
+        <!-- v1 -->
         <link rel="stylesheet" href="/static/js/angular-json-edit/dist/styles/jsonEditor.css">
+        <script src="/static/js/angular-json-edit/dist/angularJsonEdit.js"></script>
+        
+
+        <!-- editor -->
+        <script type="text/javascript" src="/static/js/ace-builds/src-min-noconflict/ace.js"></script>
+        <script type="text/javascript" src="/static/js/angular-ui-ace/ui-ace.js"></script>
+        
         <!-- endbower -->
         <script src="/static/js/introspector/default.js"></script>
 
@@ -151,7 +166,8 @@ def run_command(cmd, cwd):
     <script src="/static/js/introspector/controllers/table.js"></script>
     <script src="/static/js/introspector/controllers/graph.js"></script>
     <script src="/static/js/introspector/controllers/source.js"></script>
-    <script src="/static/js/angular-json-edit/dist/angularJsonEdit.js"></script>
+        
+
 
         </body>
         </html>""".format( data=data)
